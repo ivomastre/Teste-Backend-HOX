@@ -1,3 +1,3 @@
-module.exports = {
-    secret: process.env.SECRET
-};
+require('dotenv').config()
+const secret = process.env.SECRET
+module.exports = secret
