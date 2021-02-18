@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Product', { 
+    await queryInterface.createTable('Category', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,28 +12,22 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      manufacturingDate: {
-        type: Sequelize.DATE
+      email: {
+        type: Sequelize.STRING
       },
-      perishableProduct: {
-        type: Sequelize.BOOLEAN
-      },
-      expirationDate: {
-        type: Sequelize.DATE
-      },
-      price: {
-        type: Sequelize.DECIMAL(10, 2)
+      password: {
+        type: Sequelize.STRING
       },
       createdAt: {
         type: Sequelize.DATE,
-        
+
       },
       updatedAt: {
         type: Sequelize.DATE,
 
       }
     });
-    
+
   },
 
   down: async (queryInterface, Sequelize) => {
