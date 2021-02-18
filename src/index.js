@@ -4,11 +4,9 @@ var productRouter = require('./routes/product');
 
 var app = express();
 require('./database')
-
+require('dotenv').config()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
 app.use('/', indexRouter);
 app.use(productRouter);
 
