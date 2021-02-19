@@ -36,7 +36,6 @@ module.exports = {
     if (offset < 0) {
       offset = 0
     }
-    console.log(offset)
     const products = await Product.findAll(
       { order: orderQuery, limit, offset: offset }
     )
