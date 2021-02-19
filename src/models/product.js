@@ -24,7 +24,7 @@ class Product extends Model {
   }
 
   static associate (models) {
-    this.belongsTo(models.Category)
+    this.belongsTo(models.Category, { allowNull: true })
   }
 }
 

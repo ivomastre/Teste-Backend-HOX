@@ -12,7 +12,7 @@ class Category extends Model {
   }
 
   static associate (models) {
-    this.hasMany(models.Product, { as: 'Category', foreignKey: 'CategoryId' })
+    this.hasMany(models.Product, { as: 'Category', foreignKey: { name: 'CategoryId', allowNull: true } })
   }
 }
 module.exports = Category
