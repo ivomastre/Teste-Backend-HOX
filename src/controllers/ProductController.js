@@ -11,7 +11,6 @@ module.exports = {
     }
     if (CategoryId) {
       const category = await Category.findByPk(CategoryId)
-      console.log(category)
       if (!category) {
         return res.status(400).json({ message: 'Category not found' })
       }
