@@ -25,7 +25,15 @@ Get a MySQL Server with root password = 123456
     ```sh
     yarn
     ```
-3.  Run the Docs (on the docs folder)
+3.  Run the project
+    ```sh
+    yarn run start
+    ```
+4.  Run the tests
+    ```sh
+    yarn run test
+    ```
+5.  Run the Docs (on the docs folder)
     ```sh
     npx serve
     ```
