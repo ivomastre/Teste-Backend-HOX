@@ -1,23 +1,23 @@
 const User = require('../models/user.js')
 
-checkDuplicateEmail = async (req, res, next) => {
-    const user = await User.findOne({
-        where: {
-            email: req.body.email
-        }
-    })
-    if(user){
-        res.status(400).send({
-            message: "Email already in use"
-        })
-        return
+const checkDuplicateEmail = async (req, res, next) => {
+  const user = await User.findOne({
+    where: {
+      email: req.body.email
     }
-    next();
+  })
+  if (user) {
+    res.status(400).send({
+      message: 'Email already in use'
+    })
+    return
+  }
+  next()
 }
 
 const verifySignUp = {
-    checkDuplicateEmail: checkDuplicateEmail,
+  checkDuplicateEmail: checkDuplicateEmail
 
-};
+}
 
-module.exports = verifySignUp;
+module.exports = verifySignUp

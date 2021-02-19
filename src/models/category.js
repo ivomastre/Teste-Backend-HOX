@@ -1,19 +1,18 @@
 
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize')
 class Category extends Model {
-    static init(sequelize) {
-        super.init({
-            name: {
-                type: DataTypes.STRING
-            },
-        }, {
-            sequelize
-        })
-    }
-    static associate(models){
-        this.belongsToMany(models.Product, { through: "ProductCategory", as: "Category", foreignKey: 'categoryId'})
-    }
+  static init (sequelize) {
+    super.init({
+      name: {
+        type: DataTypes.STRING
+      }
+    }, {
+      sequelize
+    })
+  }
+
+  static associate (models) {
+    this.hasMany(models.Product, { as: 'Category', foreignKey: 'CategoryId' })
+  }
 }
-module.exports = Category;
-
-
+module.exports = Category

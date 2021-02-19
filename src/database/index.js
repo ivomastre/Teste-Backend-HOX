@@ -5,9 +5,9 @@ const Category = require('../models/category.js')
 const User = require('../models/user.js')
 const connection = new Sequelize(dbConfig)
 
-Product.init(connection);
-Category.init(connection);
+Product.init(connection)
+Category.init(connection)
 User.init(connection)
-Product.associate(connection.models);
-Category.associate(connection.models);
+Product.associate(connection.models)
+Category.associate(connection.models)
 module.exports = connection
