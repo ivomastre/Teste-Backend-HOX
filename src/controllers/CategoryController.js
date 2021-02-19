@@ -6,6 +6,14 @@ module.exports = {
     const category = await Category.create({ name })
     return res.json(category)
   },
+  async show (req, res) {
+    const { id } = req.params
+    const category = await Category.findByPk(id)
+    if (!category) {
+      return res.status(404).json({ message: 'category not found' })
+    }
+    return res.json(category)
+  },
   async index (req, res) {
     const { order, orderBy } = req.query
     const page = req.query.page || 0

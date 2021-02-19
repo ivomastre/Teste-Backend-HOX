@@ -31,6 +31,16 @@ describe('Test the Product Endpoints', () => {
     const response = await request(app).get('/product').set('authorization', 'teste')
     expect(response.status).toBe(401)
   })
+  it('Should be able to access Show', async () => {
+    await request(app).post('/product').set('authorization', `bearer ${token}`).send({ name: 'teste' })
+    const response = await request(app).get('/product/1').set('authorization', `bearer ${token}`)
+    expect(response.status).toBe(200)
+    expect(response.body.name).toBe('teste')
+  })
+  it('Shouldn`t be able to access Show with a invalid id', async () => {
+    const response = await request(app).get('/product/2').set('authorization', `bearer ${token}`)
+    expect(response.status).toBe(404)
+  })
   it('Should be able to post', async () => {
     const response = await request(app).post('/product').send({
       name: 'teste',
@@ -92,7 +102,6 @@ describe('Test the Product Endpoints', () => {
       name: 'teste2'
     }).set('authorization', `bearer ${token}`)
     expect(response.status).toBe(200)
-    console.log(response.body)
     expect(response.body.updatedProduct.name).toBe('teste2')
   })
 

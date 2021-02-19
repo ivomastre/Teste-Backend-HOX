@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon src/server.js",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --detectOpenHandles"
   },
   "jest": {
     "verbose": true

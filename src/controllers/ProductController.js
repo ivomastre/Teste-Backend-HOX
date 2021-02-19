@@ -18,33 +18,18 @@ module.exports = {
     const product = await Product.create({ name, CategoryId, manufacturingDate, perishableProduct, expirationDate, price })
     return res.json(product)
   },
-  async index (req, res) {
-    const { order, orderBy } = req.query
-    const page = req.query.page || 0
-    let limit
-
-    if (page) {
-      limit = 10
+  async show (req, res) {
+    const { id } = req.params
+    const product = await Product.findByPk(id)
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' })
     }
-
-    let orderQuery = [[orderBy, order]]
-    if (!orderBy && !order) {
-      orderQuery = undefined
-    }
-    let offset = (page * 10) - 10
-    if (offset < 0) {
-      offset = 0
-    }
-    const products = await Product.findAll(
-      { order: orderQuery, limit, offset: offset }
-    )
-    return res.json(products)
+    return res.json(product)
   },
-  async index_filter_categories (req, res) {
-    const { categoryId } = req.params
-    console.log(categoryId)
-    const { order, orderBy } = req.query
+  async index (req, res) {
+    const { order, orderBy, categoryId } = req.query
     const page = req.query.page || 0
+    const where = categoryId ? { categoryId } : undefined
     let limit
 
     if (page) {
@@ -59,9 +44,8 @@ module.exports = {
     if (offset < 0) {
       offset = 0
     }
-    console.log(offset)
     const products = await Product.findAll(
-      { order: orderQuery, limit, offset: offset, where: { categoryId } }
+      { order: orderQuery, limit, offset: offset, where }
     )
     return res.json(products)
   },
